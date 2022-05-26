@@ -8,43 +8,39 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
-	function pNum(pid,p,no){
-		var nums = $("#num_count"+no).val();
-		$.ajax({
-			url:"updateCartNum?pid="+pid+"&num=1&price="+p,
-			method:"get",
-			success:function(){
-				location.href = "getCart";
-			},
-			error:function(){
-				alert("服务器异常");
+
+	function sub(cid,cnum,price){
+
+		if (cnum == 1){
+			if (confirm("当前购物车只有一条商品，是否要移除！"))
+			{
+				location.href = "cart?method=delete&cid="+cid;
 			}
-		})
-	}
-	function mNum(pid,p,no){
-		var num = -1; //数量
-		var nums = $("#num_count"+no).val();
-		if(Number(nums)<=1){
-			if(confirm("确认要删除吗?")){
-				num = 0;
-			}else{
-				return;
-			}
+		}else{
+			cnum--;
+			location.href = "cart?method=update&cid="+cid+"&cnum="+cnum+"&price="+price;
 		}
-		$.ajax({
-			url:"updateCartNum?pid="+pid+"&num="+num+"&price="+p,
-			method:"get",
-			success:function(){
-				location.href = "getCart";
-			},
-			error:function(){
-				alert("服务器异常");
-			}
-		})
+
 	}
-	function clearCart(pid){
-		if(confirm("确认要删除吗")){
-			location.href="clearCart?pid="+pid;
+
+	function add(cid,cnum,price){
+		cnum++;
+		location.href = "cart?method=update&cid="+cid+"&cnum="+cnum+"&price="+price;
+	}
+
+
+	function delCart(cid){
+
+		if (confirm("是否要删除购物车数据！")){
+			location.href = "cart?method=delete&cid="+cid;
+		}
+	 }
+
+
+	function clearCart(uid){
+		if (confirm("是否要清空购物车！"))
+		{
+			location.href = "cart?method=clear&uid="+uid;
 		}
 	}
 </script>
@@ -56,7 +52,15 @@
 		<h3>我的购物车<small>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</small></h3>
 	</div>
 	<div class="row" style="margin-top: 40px;">
+
+		<c:if test="${empty list}">
+			<h3>&nbsp;&nbsp;购物车竟然是空的！！</h3>
+		</c:if>
+		<c:if test="${!empty list}">
+
+
 		<div class="col-md-10 col-md-offset-1">
+
 			<table class="table table-bordered table-striped table-hover">
  				<tr>
  					<th>序号</th>
@@ -67,7 +71,7 @@
  					<th>操作</th>
  				</tr>
  				<c:set value="0" var="sum"></c:set>
- 				<c:forEach items="${carts}" var="c" varStatus="i">
+ 				<c:forEach items="${list}" var="c" varStatus="i">
 	 				<tr>
 	 					<th>${i.count}</th>
 	 					<th>${c.product.pname}</th>
@@ -75,33 +79,34 @@
 	 					<th width="100px">
 		 					<div class="input-group">
 		 						<span class="input-group-btn">
-		 							<button class="btn btn-default" type="button" onclick="mNum(${c.goods.id},${c.goods.price},${i.count})">-</button>
+		 							<button class="btn btn-default" type="button" onclick="sub(${c.cid},${c.cnum},${c.product.pprice})">-</button>
 		 						</span>
 		 						<input type="text" class="form-control" id="num_count${i.count}" value="${c.cnum}" readonly="readonly" style="width:40px">
 		 						<span class="input-group-btn">
-		 							<button class="btn btn-default" type="button" onclick="pNum(${c.goods.id},${c.goods.price},${i.count})">+</button>
+		 							<button class="btn btn-default" type="button" onclick="add(${c.cid},${c.cnum},${c.product.pprice})">+</button>
 		 						</span>
 	 						</div>
 	 					</th>
 	 					<th>¥&nbsp;${c.ccount }</th>
 	 					<th>
-	 						<button type="button" class="btn btn-default" onclick="clearCart(${c.product.pid})">删除</button>
+	 						<button type="button" class="btn btn-default" onclick="delCart(${c.cid})">删除</button>
 	 					</th>
 	 				</tr>
 	 				<c:set var="sum" value="${sum+c.ccount}"></c:set>
  				</c:forEach>
 			</table>
 		</div>
+		</c:if>
 	</div>
 	<hr>
 	<div class="row">
 		<div class="pull-right" style="margin-right: 40px;">
-			
-	            <div>
-	            	<a id="removeAllProduct" href="javascript:clearCart(0)" class="btn btn-default btn-lg">清空购物车</a>
+<%--			href="javascript:clearCart(0)"--%>
+			<div>
+	            	<a id="removeAllProduct"  onclick="clearCart(${loginUser.uid})" class="btn btn-default btn-lg">删除全部</a>
 	            	&nbsp;&nbsp;
-	            	<a href="${pageContext.request.contextPath}/getOrderView" class="btn  btn-danger btn-lg">添加收货地址</a>
-	            	
+	            	<a href="${pageContext.request.contextPath}/order?method=preView&uid=${loginUser.uid}" class="btn  btn-danger btn-lg">提交</a>
+
 	            </div>
 	            <br><br>
 	            <div style="margin-bottom: 20px;">        		  
@@ -110,10 +115,7 @@
 		</div>
 	</div>
 </div>
-	
-    
-<!-- 底部 -->
-<%@ include file="footer.jsp"%>
+
 
 </body>
 </html>

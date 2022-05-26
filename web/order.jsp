@@ -8,11 +8,20 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		$("#btn_add").click(function(){
-			location.href = "addOrder?aid="+$("#address").val();
-		})
-	})
+		function createOrder(uid,sum){
+
+			alert("支付成功");
+			//选中地址的id
+			location.href = "order?method=create&uid="+uid+"&sum="+sum+"&aid="+$("#address").val();
+		}
+		function updata(oid){
+			alert("支付成功");
+			location.href = "order?method=success&oid="+oid;
+		}
+		function addOrder(uid,sum){
+			location.href = "order?method=create&uid="+uid+"&sum="+sum+"&aid="+$("#address").val();
+		}
+
 </script>
 </head>
 <body style="background-color:#f5f5f5">
@@ -36,23 +45,23 @@
  				<c:forEach items="${cartList}" var="c" varStatus="i">
 	 				<tr>
 	 					<th>${i.count}</th>
-	 					<th>${c.goods.name}</th>
-	 					<th>${c.goods.price}</th>
-	 					<th>${c.num}</th>
-	 					<th>${c.money}</th>
+	 					<th>${c.product.pname}</th>
+	 					<th>${c.product.pprice}</th>
+	 					<th>${c.cnum}</th>
+	 					<th>${c.ccount}</th>
 	 				</tr>
-	 				<c:set var="sum" value="${sum+c.money}"></c:set>
+	 				<c:set var="sum" value="${sum+c.ccount}"></c:set>
  				</c:forEach>
  				<tr>
  				 <td colspan="5">
  				 	<h5>收货地址</h5>
  				 	<select id="address" style="width:60%" class="form-control">
- 				 		<c:forEach items="${addList}" var="a" varStatus="ai">
- 				 			<option value="${a.id}">${a.name}&nbsp;&nbsp;${a.phone}&nbsp;&nbsp;${a.detail}</option>
+ 				 		<c:forEach items="${addressList}" var="a" varStatus="ai">
+ 				 			<option value="${a.aid}">${a.aname}&nbsp;&nbsp;${a.aphone}&nbsp;&nbsp;${a.adetail}</option>
  				 		</c:forEach>
  				 	</select>
- 				 	<c:if test="${empty addList}">
- 				 		<a href="self_info.jsp">添加收货地址</a>
+ 				 	<c:if test="${empty addressList}">
+ 				 		<a href="address?method=show">添加收货地址</a>
  				 	</c:if>
  				 </td>
  				</tr>
@@ -66,8 +75,9 @@
 		</div>
 	</div>
 	<div class="row pull-right" style="margin-right: 40px;">
+		&nbsp;&nbsp;
 		 <div style="margin-bottom: 20px;">
-	            <button  id="btn_add" class="btn  btn-danger btn-lg" type="button">提交订单</button>
+	            <button  id="btn_add"  onclick="createOrder(${loginUser.uid},${sum})" class="btn  btn-danger btn-lg" type="button">支付</button>
 	     </div>
 	</div>
 </div>

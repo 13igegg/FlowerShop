@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="qfshop:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/qfshop_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="qfshop/web/Web" />
+      <element id="javaee-facet-resources" facet="Flowershop/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="qfshop" />
+          <element id="module-output" name="Flowershop" />
         </element>
       </element>
     </root>

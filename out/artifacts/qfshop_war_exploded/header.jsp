@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="css/login2.css">
+<%--<link rel="stylesheet" type="text/css" href="css/login2.css">--%>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <title>头部</title>
     <script type="text/javascript">
         $(document).ready(function(){
             $.ajax({
-                url:"${pageContext.request.contextPath}/type?method=getTypes",
+                url:"${pageContext.request.contextPath}/type?method=findAll",
                 type:"GET",
                 dataType:"json",
                 success:function(data){
@@ -27,54 +27,64 @@
             })
         })
     </script>
+    <style>
+        a{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .heardnav:hover{
+            text-decoration:none;
+        }
+    </style>
 </head>
-<body>
-				
- <div id="top">
-    	<div id="topdiv">
-            <span>
-                <a href="index.jsp" id="a_top" target="_blank">小米商城</a>
-                <li>|</li>
-                <a href="" id="a_top">小米商城移动版</a>
-                <li>|</li>
-                <a href="" id="a_top">问题反馈</a>
-            </span>
+<body style="margin-bottom: 100px">
 
-            <span style="float:right">
-           		<c:if test="${empty loginUser}">
-                    <a href="login.jsp" id="a_top">登录</a>
-                    <li>|</li>
-                    <a href="register.jsp" id="a_top">注册</a>
-                </c:if>
-       			<c:if test="${not empty loginUser}">
-                    <a href="userAddress?flag=show" id="a_top">${loginUser.username}</a>
-                    <li>|</li>
-                    <a href="user?method=logOut" id="a_top">注销</a>
-                    <li>|</li>
-                    <a href="getOrderList" id="a_top">我的订单</a>
-                    <li>|</li>
-                    <a href="userservlet?method=getAddress" id="a_top">地址管理</a>
-                </c:if>
-                <li>|</li>
-                <a href="" id="a_top">消息通知</a>
-                <a href="${pageContext.request.contextPath}/cartservlet?method=getCart" id="shorpcar">购物车</a>
-            </span>
+<nav class="nav navbar-default navbar-fixed-top" role="navigation" style="height: 64px;background-color: #ffffff;padding-top: 10px;padding-bottom: 10px;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+                <span>
+                    <a class="heardnav" href="index.jsp"  target="_blank" title="首页" style="color:#777777;font-size: 35px">
+                        FlowerShop❀
+                    </a>
+                </span>
         </div>
- </div>
-<div id="second">
-	    <a href="" id="seimg" style=" margin-top:23px;"><img id="logo" src="image/logo_top.png" width="55" height="54"/></a>
-        <a href="" id="seimg" style=" margin-top:17px;"><img id="gif" src="image/yyymix.gif" width="180" height="66" /></a>
-        <p id="goodsType">
-			<!-- 根据ajax 回调函数 填写数据 到此id中 -->
 
-        </p>
-       <form class="form-inline pull-right" style="margin-top: 40px;margin-right: 10px;">
-		
-		  <div class="form-group">
-		    <input type="text" class="form-control" style="width: 400px"  placeholder="搜索一下好东西...">
-		  </div>
-		  <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;搜索</button>
-	  </form>
-</div>
+        <ul class="nav navbar-nav navbar-right">
+
+            <c:if test="${empty loginUser}">
+                <li><a href="login.jsp" class="ul" title="用户登录">
+                    登录
+                </a></li>
+
+                <li><a href="register.jsp" class="ur" title="注册">
+                    注册
+                </a></li>
+            </c:if>
+            <c:if test="${not empty loginUser}">
+                <li><a href="address?method=show" class="as">${loginUser.username}，你好！</a>
+                </li>
+                <li><a href="user?method=logOut" class="ue" title="用户退出">
+                    退出
+                </a></li>
+
+                <li><a href="order?method=show" class="uo" title="我的订单">
+                    订单
+                </a></li>
+
+                <li><a href="address?method=show" class="ag" title="地址管理">
+                    地址
+                </a></li>
+            </c:if>
+
+            <li><a href="" class="info" title="消息通知">
+                通知
+            </a></li>
+            <li><a href="${pageContext.request.contextPath}/cart?method=show&uid=${loginUser.uid}" title="购物车" class="cs" style="font-size: 25px; font-weight: bolder;">
+                购物车
+            </a></li>
+
+        </ul>
+    </div>
+</nav>
 </body>
 </html>

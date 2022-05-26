@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <title>购物车</title>
 </head>
-<body>
+<body style="margin-top: 150px">
 <%@ include file="header.jsp" %>
 
 <div class="container">
@@ -17,9 +17,9 @@
 			    <h3 class="panel-title">购物车提示</h3>
 			</div>
 			<div class="panel-body">
-			    <h3 class="text-default"><span class="glyphicon glyphicon-ok-sign"></span>添加购物车成功!!</h3>
+			    <h3 class="text-default"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;&nbsp;&nbsp;&nbsp;添加购物车成功!</h3>
 				<hr>
-				<a href="${pageContext.request.contextPath}/cart?method=showCart" class="btn btn-primary">查看购物车</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="${pageContext.request.contextPath}/cart?method=show&uid=${loginUser.uid}" class="btn btn-primary">查看购物车</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="#" class="btn btn-default">继续购物</a>
 			</div>
 		</div>
@@ -28,6 +28,5 @@
 	
 </div>
 
-<%@ include file="footer.jsp" %>
 </body>
 </html>

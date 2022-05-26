@@ -10,15 +10,15 @@
 		
 <link rel="stylesheet" type="text/css" href="css/login.css">
 
-<title>注册成功</title>
+<title>提醒</title>
 </head>
-<body>
+<body style="background-color: #fff2c5">
 	<div class="regist">
 		<div class="regist_center">
 			<div class="regist_top">
-				<div class="left fl"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;会员注册</div>
+				<div class="left fl"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;提示</div>
 				<div class="right fr">
-					<a href="index.jsp" target="_black">MyShop</a>
+					<a href="index.jsp" target="_black">FlowerShop</a>
 				</div>
 				<div class="clear"></div>
 				<div class="xian center"></div>

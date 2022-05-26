@@ -14,32 +14,25 @@
 			$("#pagecode").attr("src","code?method=createCode&t="+Math.random());
 		});
 
-		//4.两周以内自动登录  友好提示 
-		$("#autoLogin").click(function(){
-			if(this.checked){
-				$("#autoLoginMsg").html("公司电脑请勿勾选此项").css("color","red");
-			}else{
-				$("#autoLoginMsg").html("");
-			}
-		})
+
 	})
 </script>
 </head>
-<body>
+<body style="background-color: #fff5bb">
 		<!-- login -->
-		<div class="top center">
-			<div class="logo center">
-				<a href="${pageContext.request.contextPath }/index.jsp" target="_blank"><img src="./image/mistore_logo.png" alt=""></a>
+		<div class="top center" style="background-color: #fff5bb;">
+			<div class="logo center" >
+				<a href="${pageContext.request.contextPath }/index.jsp" target="_blank"></a>
 			</div>
 		</div>
-		<form  method="post" action="user?method=login" class="form center" id="userLogin" >
-		<div class="login">
-			<div class="login_center">
+		<form  method="post" action="user?method=login" class="form center" id="userLogin" style="width:1130px;height:588px;background:url(image/Sunflower-1.png);border-radius: 5px; padding-top: 50px ">
+		<div class="login" style="background-color:rgba(68, 68, 68, 0.5);margin-right:50px;" >
+			<div class="login_center" >
 				<div class="login_top">
 					<div class="left fl">会员登录</div>
 					<div class="right fr">您还不是我们的会员？<a href="${pageContext.request.contextPath }/register.jsp" target="_self">立即注册</a></div>
 					<div class="clear"></div>
-					<div class="xian center"></div>
+					<div class="xian center" style="background: #ee9e44;"></div>
 				</div>
 				<div class="login_main center">
 					<div class="username">
@@ -65,21 +58,17 @@
 						<div class="right fl"><label id="checkMsg"></label></div>
 					</div>
 					<div class="username">
-						<input id="autoLogin" name="auto" type="checkbox" />&nbsp;&nbsp;两周以内自动登录
+						<input id="autoLogin" name="auto" type="checkbox" />&nbsp;&nbsp;自动登录
 						<span id="autoLoginMsg"></span>
 					</div>
 					<div class="login_submit">
-						<input class="submit" type="submit" name="submit" value="立即登录" id="btn"  >
+						<input class="submit" type="submit" name="submit" value="立即登录" id="btn"  style="background: #ee9e44;" >
 					</div>
 					<span style="color:red">${msg}</span>
 				</div>	
 			</div>
 		</div>
 		</form>
-		<footer>
-			<div class="copyright">简体 | 繁体 | English | 常见问题</div>
-			<div class="copyright">小米公司版权所有-京ICP备10046444-<img src="./image/ghs.png" alt="">京公网安备11010802020134号-京ICP证110507号</div>
 
-		</footer>
 	</body>
 </html>

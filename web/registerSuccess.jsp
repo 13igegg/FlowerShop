@@ -12,20 +12,20 @@
 
 <title>注册成功</title>
 </head>
-<body>
+<body style="margin-top: 200px;margin-bottom: 200px;background-color: #fff6d5">
 	<div class="regist">
 		<div class="regist_center">
 			<div class="regist_top">
-				<div class="left fl"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;会员注册</div>
-				<div class="right fr">
-					<a href="index.jsp" target="_black">小米商城</a>
+				<div class="left fl">&nbsp&nbsp;会员注册</div>
+				<div class="right fr" style="background-color: #eec847">
+					<a href="index.jsp" target="_black">FlowerShop</a>
 				</div>
-				<div class="clear"></div>
-				<div class="xian center"></div>
+				<div class="clear" style="background-color: #eec847"></div>
+				<div class="xian center" style="background-color: #eec847"></div>
 			</div>
 			<div  style="margin-top: 80px;margin-left: 100px;">
 					
-					<p class="text-info" style="font-size: 20px;">注册成功 别忘记激活!</p>
+					<p class="text-info" style="font-size: 20px;">注册成功 请及时激活!</p>
 					
 					<a class="btn btn-danger" href="http://www.hao123.com/mail" target="_blank">现在激活</a>
 					<a class="btn btn-default" href="${pageContext.request.contextPath }/index.jsp" target="_blank">返回主页</a>

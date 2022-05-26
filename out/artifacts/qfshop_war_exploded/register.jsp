@@ -26,14 +26,12 @@
 </script>
 <title>注册</title>
 </head>
-<body>
+<body style="background-color: #fff9e1">
 	<div class="regist">
 		<div class="regist_center">
 			<div class="regist_top">
-				<div class="left fl"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;会员注册</div>
-				<div class="right fr">
-					<a href="index.jsp" target="_black">小米商城</a>
-				</div>
+				<div class="left fl">&nbsp;&nbsp;&nbsp;会员注册</div>
+
 				<div class="clear"></div>
 				<div class="xian center"></div>
 			</div>
@@ -56,9 +54,7 @@
 							<input type="password" name="upassword"
 								class="form-control col-sm-10" placeholder="Password" />
 						</div>
-						<div class="col-sm-2">
-						<p class="text-danger"><span id="helpBlock" class="help-block ">请不输入6位以上字符</span></p>
-						</div>
+
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">确认密码</label>
@@ -66,9 +62,7 @@
 							<input type="password"  class="form-control col-sm-10"
 								placeholder="Password Again" />
 						</div>
-						<div class="col-sm-2">
-						<p class="text-danger"><span id="helpBlock" class="help-block ">两次密码要输入一致哦</span></p>
-						</div>
+
 					</div>
 
 					<div class="form-group">
@@ -77,9 +71,7 @@
 							<input type="text" name="email" class="form-control col-sm-10"
 								placeholder="Email" />
 						</div>
-						<div class="col-sm-2">
-						<p class="text-danger"><span id="helpBlock" class="help-block ">填写正确邮箱格式</span></p>
-						</div>
+
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">性别</label>
@@ -90,9 +82,7 @@
 								name="usex" value="女"> 女
 							</label>
 						</div>
-						<div class="col-sm-2">
-						<p class="text-danger"><span id="helpBlock" class="help-block ">你是帅哥 还是美女</span></p>
-						</div>
+
 					</div>
 					<hr>
 					<div class="form-group">
